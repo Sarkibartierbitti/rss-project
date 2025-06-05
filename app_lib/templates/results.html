@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="feed">
+
+    {% if error_feed: %}
+        <div class="error">
+            <h1>{{error_feed}}</h1>
+        </div>
+
+    {% elif items %}
+        <h1>The news (updated: {{last_updated.strftime('%H:%M')}}):</h1>
+        <div class="feed-container">
+            {% for item in items %}
+                <article class="feed-item">
+                    <h2><a href="{{item['link']}}" target="_blank" rel="noopener noreferrer">{{item['title']}}</a></h2>
+                    <p>{{item['description'] | truncate(150)}}</p>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="error">No feed items available</p>
+    {% endif %}
+</section>
+{% endblock %}

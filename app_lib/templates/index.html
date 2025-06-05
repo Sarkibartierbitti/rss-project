@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/fetch" method="post">
+    {{ form.hidden_tag() }} 
+    <label for="form-input">Enter your URL:
+    <input type="url" id="form-input" name="form-input" type="text" required placeholder="https://example.com/file.file"/>
+    </label>
+    <input type="submit" value="Submit">
+    {% if form.url.errors %}
+    <ul class="errors">
+        {% for error in form.url.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</form>
+{% endblock %}
